@@ -14,4 +14,5 @@ dependencies = [
     "fastembed>=0.8.0",
     "langchain-groq>=1.1.3",
     "langchain>=1.3.10",
+    "pydantic-settings>=2.14.2",
 ]
