@@ -10,3 +10,17 @@ wheels/
 .env
 .venv/
 .uv-cache/
+# Chroma database
+data/
+*.sqlite3
+*.bin
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+
+# Environment variables
+.env
