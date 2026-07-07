@@ -7,7 +7,6 @@ from typing import Any
 
 import chromadb
 from chromadb.utils import embedding_functions
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from customer_support_agent.core.settings import Settings
 
@@ -22,10 +21,16 @@ class KnowledgeBaseService:
             name=self._collection_name,
             embedding_function=self._embedding_function,
         )
-        self._splitter = RecursiveCharacterTextSplitter(
-            chunk_size=settings.rag_chunk_size,
-            chunk_overlap=settings.rag_chunk_overlap,
-        )
+
+    def _split_text(self, text: str) -> list[str]:
+        text = text.replace("\r\n", "\n").replace("\r", "\n")
+        chunk_size = self._settings.rag_chunk_size
+        chunk_overlap = self._settings.rag_chunk_overlap
+        if chunk_size <= 0:
+            return [text]
+
+        step = max(1, chunk_size - chunk_overlap)
+        return [text[i : i + chunk_size].strip() for i in range(0, len(text), step) if text[i : i + chunk_size].strip()]
 
     def _build_embedding_function(self) -> Any:
         if self._settings.google_api_key:
@@ -63,7 +68,7 @@ class KnowledgeBaseService:
 
         for file_path in source_files:
             text = file_path.read_text(encoding="utf-8")
-            chunks = self._splitter.split_text(text)
+            chunks = self._split_text(text)
 
             for index, chunk in enumerate(chunks):
                 chunk_hash = hashlib.sha1(chunk.encode("utf-8")).hexdigest()[:10]
