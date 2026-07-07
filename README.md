@@ -269,11 +269,11 @@ The dashboard provides ticket creation, knowledge ingestion, draft review, and m
 
 ### Ticket and Draft Workflow
 
-[![Watch the ticket and draft workflow](docs/images/support-dashboard.jpeg)](docs/demo/ticket-and-draft-workflow.mp4)
+[![Watch the ticket and draft workflow](docs/images/support-dashboard.jpeg)](docs/demo/Video-Project.mp4)
 
 ### Memory and Knowledge Workflow
 
-[![Watch the memory and knowledge workflow](docs/images/support-dashboard.jpeg)](docs/demo/memory-and-knowledge-workflow.mp4)
+[![Watch the memory and knowledge workflow](docs/images/support-dashboard.jpeg)](docs/demo/Video-Project.mp4)
 
 > [!IMPORTANT]
 > Both demo files exceed GitHub's standard 100 MB per-file limit. Track `docs/demo/*.mp4` with [Git LFS](https://git-lfs.com/) before committing, or upload them as GitHub release/user attachments and replace these local links.
